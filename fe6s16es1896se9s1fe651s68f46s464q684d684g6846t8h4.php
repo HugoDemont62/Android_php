@@ -39,16 +39,14 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
             }
         }
     } else {
-        echo '
-                 <a href="html/regi.html">Retour à la page de connexion compte déjà enregistré ! </a>
-            ';
+        $response = array();
+        $response["success"] = "Email invalid";
 
 
     }
 } else {
-    echo '
-                 <a href="html/regi.html">Retour a la page de connexion : Mail incorrect </a>
-            ';
+    $response = array();
+    $response["success"] = "This information is incorrect";
 }
 
 
