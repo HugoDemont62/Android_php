@@ -24,27 +24,11 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
                 ':email' => $email,
                 ':mdp' => $hashPassword,
             ));
-            if ($query->rowCount() == 1) {
-
-                $time = date('r');
-                $to = "contact@hugodemont.fr";
-                $subject = "Mail From website";
-                $headers = "From: contact@hugodemont.fr" . "\r\n";
-
-                if ($email != NULL) {
-                    mail($to, $subject, "Le nouvel utilisateur  $login le\r$time\ravec le mail : $email\n\r\n\r\n", $headers);
-                    mail($email . "\r\n", "Votre enregistrement à été effectué avec succes" . "\r\n", "Message envoyé sur le site hugodemont.fr à $time\r\nCe message est automatique ne pas répondre \n\r\n\r\n\r\n Vous vous êtes enregisté sur hugodemont.fr\n\r\n\r\n\r\nSi vous n'êtes pas à l'origine de ce message n'en prenez pas compte. \n\r Hugo Demont service de communnication de hugodemont.fr ", $headers);
-                }
-                header("Location:index.php");
+            $response = array();
+            $response["success"] = $line;
             }
         }
     } else {
-        $response = array();
-        $response["success"] = "Email invalid";
-
-
-    }
-} else {
     $response = array();
     $response["success"] = "This information is incorrect";
 }
